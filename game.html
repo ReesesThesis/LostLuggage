@@ -1,0 +1,102 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <meta charset="utf-8"> 
+    <title>Lost Luggage Game</title> 
+  
+    <style> 
+        html { 
+    font-family: sans-serif; 
+    } 
+      
+        body { 
+    width: 50%; 
+    max-width: 800px; 
+    min-width: 480px; 
+    margin: 0 auto; 
+    } 
+    </style> 
+</head> 
+  
+<body> 
+<h1>Help the passenger find their luggage.</h1> 
+  
+<p>The conveyor belt is broken. Please ask for hints or guess what luggage belongs to the passenger.</p> 
+  
+<div class="form"> 
+    <label for="guessField">Enter a guess for the color: </label> 
+    <input type = "text" id = "guessField" class = "guessField"> 
+    <label for="guessField2">Enter a guess for the shape: </label>
+    <input type = "text" id = "guessField2" class = "guessField2">
+    <input type = "submit" value = "Submit guess" 
+           class = "guessSubmit" id = "submitguess"> 
+</div>
+<p>
+
+</p>
+<div class = "form">
+    <label for="hintField">Click here for a hint:</label>
+    <input type = "submit" value = "Hint" 
+           class = "guessSubmit" id = "hintclick">
+</div>
+
+
+<script type = "text/javascript"> 
+  
+    // random color generated 
+    var color = Math.floor(Math.random() * 7 + 1);
+    // random shape generated
+    var shape = Math.floor(Math.random() * 5 + 1);
+    var colorArray = ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Black"];
+    var shapeArray = ["Circles", "Stripes", "Solid", "Hearts", "Sunglasses"]  
+    var myColor = colorArray[color - 1];
+    var myshape = shapeArray[shape - 1];
+    // counting the number of guesses 
+    // made for correct Guess 
+    var guess = 1; 
+
+    // uncomment to test
+    //alert("The Color is " + myColor);  
+    //alert("The Shape is " + myshape);
+   
+   
+   document.getElementById("submitguess").onclick = function(){ 
+      
+   // information guessed by user      
+   var x = document.getElementById("guessField").value; 
+   var y = document.getElementById("guessField2").value;
+  
+   if(x == myColor && y == myshape) //if guessed correctly
+   {     
+       alert("Good job. You guessed correctly after "
+               + guess + " attempts. "); 
+   } 
+   else /* if guess incorrect*/ 
+   {     
+       guess++; 
+       alert("Please try again"); 
+   } 
+} 
+
+    document.getElementById("hintclick").onclick = function(){
+    
+    var typeHint = Math.floor(Math.random() * 2 + 1); //randomly picks color or shapes
+    if(typeHint == 1){
+        var colorHint = Math.floor(Math.random() * 7 + 1); //randomly picks a color for the hint
+        while(colorHint == color){
+            colorHint = Math.floor(Math.random() * 7 + 1);
+        }
+        alert("The Color is not " + colorArray[colorHint - 1]);
+    }
+    else{
+        var shapeHint = Math.floor(Math.random() * 5 + 1); //randomly picks a shape for the hint
+        while(shapeHint == shape){
+            shapeHint = Math.floor(Math.random() * 5 + 1);
+        }
+        alert("The Shape is not " + shapeArray[shapeHint - 1]);
+    }
+    }
+
+</script> 
+</body> 
+</html>              
